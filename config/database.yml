@@ -18,10 +18,15 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  username: 'geekelo'
+  password: 'geekelo'
 
 development:
   <<: *default
   database: oilchem_certificate_portal_api_development
+  username: 'geekelo'
+  password: 'geekelo'
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
