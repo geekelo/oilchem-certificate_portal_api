@@ -1,3 +1,3 @@
 class Trainingpersonnel < ApplicationRecord
-  belongs_to :certificate
+  has_many :certificates
 end

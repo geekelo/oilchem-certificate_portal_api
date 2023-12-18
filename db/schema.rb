@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_18_180001) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_18_180002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,8 +46,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_18_180001) do
     t.string "unique_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "certificate_id", null: false
-    t.index ["certificate_id"], name: "index_students_on_certificate_id"
   end
 
   create_table "trainingpersonnels", force: :cascade do |t|
@@ -61,5 +59,4 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_18_180001) do
   add_foreign_key "certificates", "trainingpersonnels", column: "external_facilitator_id"
   add_foreign_key "certificates", "trainingpersonnels", column: "training_director_id"
   add_foreign_key "certificates", "trainingpersonnels", column: "training_instructor_id"
-  add_foreign_key "students", "certificates"
 end

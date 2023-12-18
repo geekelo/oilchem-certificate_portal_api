@@ -48,4 +48,7 @@ gem 'dotenv-rails'
 gem 'active_model_serializers'
 gem 'bcrypt'
 gem 'jwt'
+gem 'rswag'
+gem 'rswag-api'
+gem 'rswag-ui'
 
