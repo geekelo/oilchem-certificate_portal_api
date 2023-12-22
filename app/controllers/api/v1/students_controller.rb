@@ -52,7 +52,7 @@ class Api::V1::StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:students).permit(
+    params.require(:student).permit(
       :name,
       :unique_number
     )

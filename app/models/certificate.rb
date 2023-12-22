@@ -1,4 +1,4 @@
 class Certificate < ApplicationRecord
-  belongs_to :student, dependent: :destroy
+  belongs_to :student
   has_many :trainingpersonnels
 end
