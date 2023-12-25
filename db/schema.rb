@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_18_180002) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_25_002851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_18_180002) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "batches", force: :cascade do |t|
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,6 +54,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_18_180002) do
     t.string "unique_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "batch_id"
+    t.index ["batch_id"], name: "index_students_on_batch_id"
   end
 
   create_table "trainingpersonnels", force: :cascade do |t|
@@ -59,4 +69,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_18_180002) do
   add_foreign_key "certificates", "trainingpersonnels", column: "external_facilitator_id"
   add_foreign_key "certificates", "trainingpersonnels", column: "training_director_id"
   add_foreign_key "certificates", "trainingpersonnels", column: "training_instructor_id"
+  add_foreign_key "students", "batches"
 end
