@@ -40,6 +40,16 @@ class Api::V1::BatchesController < ApplicationController
     end
   end
 
+  # PATCH/PUT /api/v1/batches/1
+  def update
+    batch = Batch.find(params[:id])
+    if batch.update(batch_params)
+      render json: batch, status: :ok
+    else
+      render json: { message: 'ERROR: Unable to update batch', errors: batch.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   # DELETE /api/v1/batches/1
   def destroy
     batch = Batch.find(params[:id])

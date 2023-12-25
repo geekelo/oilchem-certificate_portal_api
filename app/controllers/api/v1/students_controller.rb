@@ -8,7 +8,8 @@ class Api::V1::StudentsController < ApplicationController
       {
         id: student.id,
         name: student.name,
-        unique_number: student.unique_number
+        unique_number: student.unique_number,
+        batch_id: student.batch_id
       }
     end
     render json: students, status: :ok
@@ -20,7 +21,8 @@ class Api::V1::StudentsController < ApplicationController
     render json: {
       id: student.id,
       name: student.name,
-      unique_number: student.unique_number
+      unique_number: student.unique_number,
+      batch_id: student.batch_id
     }
   end
 
@@ -39,6 +41,16 @@ class Api::V1::StudentsController < ApplicationController
     end
   end
 
+    # PATCH/PUT /api/v1/students/1
+    def update
+      student = Student.find(params[:id])
+      if student.update(student_params)
+        render json: student, status: :ok
+      else
+        render json: { message: 'ERROR: Unable to update student', errors: student.errors.full_messages }, status: :unprocessable_entity
+      end
+    end
+
   # DELETE /api/v1/students/1
   def destroy
     student = Student.find(params[:id])
@@ -54,7 +66,8 @@ class Api::V1::StudentsController < ApplicationController
   def student_params
     params.require(:student).permit(
       :name,
-      :unique_number
+      :unique_number,
+      :batch_id
     )
   end
 end

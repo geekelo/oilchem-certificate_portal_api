@@ -55,6 +55,16 @@ class Api::V1::CertificatesController < ApplicationController
     end
   end
 
+  # PATCH/PUT /api/v1/certificates/1
+  def update
+    certificate = Certificate.find(params[:id])
+    if certificate.update(certificate_params)
+      render json: certificate, status: :ok
+    else
+      render json: { message: 'ERROR: Unable to update certificate', errors: certificate.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   # DELETE /api/v1/certificates/1
   def destroy
     certificate = Certificate.find(params[:id])

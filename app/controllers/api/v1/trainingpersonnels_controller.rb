@@ -42,6 +42,16 @@ class Api::V1::TrainingpersonnelsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /api/v1/trainingpersonnels/1
+  def update
+    trainingpersonnel = Trainingpersonnel.find(params[:id])
+    if trainingpersonnel.update(trainingpersonnel_params)
+      render json: trainingpersonnel, status: :ok
+    else
+      render json: { message: 'ERROR: Unable to update training personnel', errors: trainingpersonnel.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   # DELETE /api/v1/trainingpersonnels/1
   def destroy
     trainingpersonnel = Trainingpersonnel.find(params[:id])
