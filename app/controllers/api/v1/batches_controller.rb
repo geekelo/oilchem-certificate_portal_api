@@ -1,5 +1,5 @@
 class Api::V1::BatchesController < ApplicationController
-  before_action :authenticate_token!, only: [:show, :create, :destroy]
+  before_action :authenticate_token!, only: [:show]
 
   # GET /api/v1/batches
   def index

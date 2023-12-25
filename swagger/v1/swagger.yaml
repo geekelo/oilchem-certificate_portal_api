@@ -2,6 +2,8 @@ openapi: 3.0.1
 info:
   title: Certificate Portal API
   version: 1.0.0
+security:
+  - api_key: []
 paths:
   /api/v1/signup:
     post:
