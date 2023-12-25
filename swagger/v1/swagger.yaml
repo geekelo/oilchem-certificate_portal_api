@@ -170,6 +170,43 @@ paths:
         '404':
           description: Failed to delete the batch
 
+    patch:
+      summary: Update a batch
+      tags:
+        - Batches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                batch:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+              required:
+                - name
+                - start_date
+                - end_date
+      responses:
+        '200':
+          description: Batch updated successfully
+        '404':
+          description: Batch not found
+
   /api/v1/trainingpersonnels:
     get:
       summary: Retrieve all training personnels
@@ -262,6 +299,38 @@ paths:
         '404':
           description: Failed to delete the training personnel
 
+    patch:
+      summary: Update a training personnel
+      tags:
+        - Training Personnels
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                trainingpersonnel:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    signature:
+                      type: string
+              required:
+                - name
+                - signature
+      responses:
+        '200':
+          description: Training personnel updated successfully
+        '404':
+          description: Training personnel not found
+
   /api/v1/students:
     get:
       summary: Retrieve all students
@@ -350,6 +419,51 @@ paths:
       tags:
         - Students
       parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Student deleted successfully
+        '404':
+          description: Failed to delete the student
+
+    patch:
+      summary: Update a student
+      tags:
+        - Students
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                student:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    unique_number:
+                      type: string
+                    batch_id:
+                      type: integer
+              required:
+                - name
+                - unique_number
+                - batch_id
+      responses:
+        '200':
+          description: Student updated successfully
+        '404':
+          description: Student not found
 
   /api/v1/certificates:
     get:
@@ -504,3 +618,123 @@ paths:
           description: Certificate deleted successfully
         '404':
           description: Failed to delete the certificate
+    /api/v1/certificates/{id}:
+    get:
+      summary: Retrieve a specific certificate
+      tags:
+        - Certificates
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Certificate found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  title:
+                    type: string
+                  course:
+                    type: string
+                  purpose:
+                    type: string
+                  student_id:
+                    type: integer
+                  start_date:
+                    type: string
+                    format: date
+                  end_date:
+                    type: string
+                    format: date
+                  training_director_id:
+                    type: integer
+                  training_instructor_id:
+                    type: integer
+                  external_facilitator_id:
+                    type: integer
+        '404':
+          description: Certificate not found
+
+    delete:
+      summary: Delete a certificate
+      tags:
+        - Certificates
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Certificate deleted successfully
+        '404':
+          description: Failed to delete the certificate
+
+    patch:
+      summary: Update a certificate
+      tags:
+        - Certificates
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                certificate:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    title:
+                      type: string
+                    course:
+                      type: string
+                    purpose:
+                      type: string
+                    student_id:
+                      type: integer
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+                    training_director_id:
+                      type: integer
+                    training_instructor_id:
+                      type: integer
+                    external_facilitator_id:
+                      type: integer
+              required:
+                - name
+                - title
+                - course
+                - purpose
+                - student_id
+                - start_date
+                - end_date
+                - training_director_id
+                - training_instructor_id
+                - external_facilitator_id
+      responses:
+        '200':
+          description: Certificate updated successfully
+        '404':
+          description: Certificate not found
+
