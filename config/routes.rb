@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :trainingpersonnels
       resources :students
       resources :certificates
+      resources :batches
     end
   end
   # Defines the root path route ("/")
