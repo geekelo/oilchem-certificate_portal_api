@@ -63,6 +63,111 @@ paths:
         '401':
           description: Invalid credentials
 
+  /api/v1/batches:
+    get:
+      summary: Retrieve all batches
+      tags:
+        - Batches
+      responses:
+        '200':
+          description: List of batches
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+
+    post:
+      summary: Create a new batch
+      tags:
+        - Batches
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                batch:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+                  required:
+                    - name
+                    - start_date
+                    - end_date
+      responses:
+        '201':
+          description: Batch created
+        '422':
+          description: Unable to create batch
+
+  /api/v1/batches/{id}:
+    get:
+      summary: Retrieve a specific batch
+      tags:
+        - Batches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Batch found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  start_date:
+                    type: string
+                    format: date
+                  end_date:
+                    type: string
+                    format: date
+        '404':
+          description: Batch not found
+
+    delete:
+      summary: Delete a batch
+      tags:
+        - Batches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Batch deleted successfully
+        '404':
+          description: Failed to delete the batch
+
   /api/v1/trainingpersonnels:
     get:
       summary: Retrieve all training personnels
@@ -176,6 +281,8 @@ paths:
                       type: string
                     unique_number:
                       type: string
+                    batch_id:
+                      type: integer
 
     post:
       summary: Create a new student
@@ -194,9 +301,12 @@ paths:
                       type: string
                     unique_number:
                       type: string
+                    batch_id:
+                      type: integer
                   required:
                     - name
                     - unique_number
+                    - batch_id
       responses:
         '201':
           description: Student created
@@ -228,6 +338,8 @@ paths:
                     type: string
                   unique_number:
                     type: string
+                  batch_id:
+                    type: integer
         '404':
           description: Student not found
 
@@ -236,16 +348,6 @@ paths:
       tags:
         - Students
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Student deleted successfully
-        '404':
-          description: Failed to delete the student
 
   /api/v1/certificates:
     get:
