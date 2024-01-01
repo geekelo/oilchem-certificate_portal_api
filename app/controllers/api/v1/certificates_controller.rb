@@ -34,9 +34,9 @@ class Api::V1::CertificatesController < ApplicationController
       student_id: certificate.student_id,
       start_date: certificate.start_date,
       end_date: certificate.end_date,
-      training_director: certificate.trainingpersonnel_id,
-      training_instructor: certificate.trainingpersonnel_id,
-      external_facilitator: certificate.trainingpersonnel_id
+      training_director_id: certificate.training_director_id,
+      training_instructor_id: certificate.training_instructor_id,
+      external_facilitator_id: certificate.external_facilitator_id,
     }
   end
 
