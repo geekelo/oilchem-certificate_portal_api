@@ -85,6 +85,6 @@ test:
 production:
   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
-  database: oilchem_certificate_portal_api_production
+  database: certificate
   username: oilchem_certificate_portal_api
   password: <%= ENV["OILCHEM_CERTIFICATE_PORTAL_API_DATABASE_PASSWORD"] %>
