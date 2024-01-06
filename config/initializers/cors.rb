@@ -16,7 +16,7 @@
 # end
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins ['https://oilchem-admin-prod.onrender.com', 'http://localhost:3000', 'http://localhost:3001'] # Add your frontend origin(s)
+    origins ['https://oilchem-certificate-portal-admin-u84m.vercel.app', 'https://oilchem-certificate-portal-admin-red.vercel.app', 'http://localhost:3000', 'http://localhost:3001'] # Add your frontend origin(s)
 
     resource '/api/*',
       headers: :any,
