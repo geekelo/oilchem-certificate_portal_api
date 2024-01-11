@@ -35,17 +35,17 @@
 ![oilchem-certificate portal ERD](https://github.com/geekelo/oilchem-certificate_portal_api/assets/102464578/2e9dd996-d0d5-475c-8a7a-4b73cad50dcb)
 
 <div align="center">
-  <h1>📖 CMS - OILCHEM MUD SCHOOL CERTIFICATE PORTAL </h>
+  <h1>📖 BACKEND API - OILCHEM MUD SCHOOL CERTIFICATE PORTAL </h>
 </div>
 
-The `BAKEND API - OILCHEM MUD SCHOOL CERTIFICATE PORTAL` project is a Ruby on Rails API only application. It manages the CRUD backend logic and postgresql database of the application. It is connected to two Reactjs frontend apps: the CMS and veifier apps.
+The `BAKEND API - OILCHEM MUD SCHOOL CERTIFICATE PORTAL` project is a Ruby on Rails API-only application. It manages the CRUD backend logic and Postgresql database of the application. It is connected to two Reactjs frontend apps: the CMS and verifier apps.
 
-The aim of this project is to provide a effective  solution to enable the Oilchem Mud School students and potential employers digitally verify certificates of job applicants from Oilchem Mud School 📚
+This project aims to provide an effective  solution to enable the Oilchem Mud School students and potential employers to digitally verify certificates of job applicants from Oilchem Mud School 📚
 
 This project comprises of -
-- [Rails Backend API only App](https://github.com/geekelo/oilchem-certificate_portal_api) - manages postgresql database and CRUD methods
-- [React CMS](https://github.com/geekelo/oilchem-certificate_portal_admin) - provides user interfaces to admins for effective cotent management
-- [React Certificate Verification Portal](https://github.com/geekelo/oilchem-certificate_portal_user) - provides an interface for students to check the availability of and download their certificates. Also providing employees an interface to authenticate and verify certificate IDs. This Applicaion is connected to the backend application and converts the details to a graphically designed and downloadable certificate.
+- [Rails Backend API only App](https://github.com/geekelo/oilchem-certificate_portal_api) - manages PostgreSQL database and CRUD methods
+- [React CMS](https://github.com/geekelo/oilchem-certificate_portal_admin) - provides user interfaces to admins for effective content management
+- [React Certificate Verification Portal](https://github.com/geekelo/oilchem-certificate_portal_user) - provides an interface for students to check the availability of and download their certificates. Also providing employees an interface to authenticate and verify certificate IDs. This application is connected to the backend application and converts the details to a graphically designed and downloadable certificate.
 
 ## 🚀 Live Demo <a name="live-demo"></a>
   - [Admin/CMS Demo Link](https://oilchem-certificate-portal-admin.geekelo.com.ng)
@@ -66,7 +66,7 @@ This project comprises of -
 
 - [x] **React-Based User Interface**
 - [x] **Modular Structure**
-- [x] **Create, read, update and delete features for certificates, students, personnel and batch**
+- [x] **Create, read, update, and delete features for certificates, students, personnel, and batch**
 - [x] **Navigation**
 
 
