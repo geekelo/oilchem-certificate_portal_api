@@ -32,6 +32,7 @@
   - [📝 License ](#-license-)
 
 <!-- PROJECT DESCRIPTION -->
+![oilchem-certificate portal ERD](https://github.com/geekelo/oilchem-certificate_portal_api/assets/102464578/2e9dd996-d0d5-475c-8a7a-4b73cad50dcb)
 
 <div align="center">
   <h1>📖 CMS - OILCHEM MUD SCHOOL CERTIFICATE PORTAL </h>
