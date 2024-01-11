@@ -16,7 +16,7 @@
 # end
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins ['https://portal.oilchemmudschool.com', 'https://oilchem-certificate-portal-admin.geekelo.com.ng', 'http://localhost:3000', 'http://localhost:3001', 'https://verify.oilchemmudschool.com', 'https://oilchem-certificate-portal-user.geekelo.com.ng'] # Add your frontend origin(s)
+    origins ['https://portal.oilchemmudschool.com', 'https://oilchem-certificate-portal-admin.geekelo.com.ng', 'https://verify.oilchemmudschool.com', 'https://oilchem-certificate-portal-user.geekelo.com.ng'] # Add your frontend origin(s)
 
     resource '/api/*',
       headers: :any,
