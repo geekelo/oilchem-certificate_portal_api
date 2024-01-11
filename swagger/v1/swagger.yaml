@@ -1,0 +1,740 @@
+openapi: 3.0.1
+info:
+  title: Certificate Portal API
+  version: 1.0.0
+security:
+  - api_key: []
+paths:
+  /api/v1/signup:
+    post:
+      summary: Create a new admin account
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                admin:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                  required:
+                    - username
+                    - email
+                    - password
+                    - password_confirmation
+      responses:
+        '201':
+          description: Admin account successfully created
+        '422':
+          description: Invalid request
+
+  /api/v1/login:
+    post:
+      summary: Admin login
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                admin:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                    - email
+                    - password
+      responses:
+        '200':
+          description: Admin logged in successfully
+        '401':
+          description: Invalid credentials
+
+  /api/v1/batches:
+    get:
+      summary: Retrieve all batches
+      tags:
+        - Batches
+      responses:
+        '200':
+          description: List of batches
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+
+    post:
+      summary: Create a new batch
+      tags:
+        - Batches
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                batch:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+                  required:
+                    - name
+                    - start_date
+                    - end_date
+      responses:
+        '201':
+          description: Batch created
+        '422':
+          description: Unable to create batch
+
+  /api/v1/batches/{id}:
+    get:
+      summary: Retrieve a specific batch
+      tags:
+        - Batches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Batch found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  start_date:
+                    type: string
+                    format: date
+                  end_date:
+                    type: string
+                    format: date
+        '404':
+          description: Batch not found
+
+    delete:
+      summary: Delete a batch
+      tags:
+        - Batches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Batch deleted successfully
+        '404':
+          description: Failed to delete the batch
+
+    patch:
+      summary: Update a batch
+      tags:
+        - Batches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                batch:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+              required:
+                - name
+                - start_date
+                - end_date
+      responses:
+        '200':
+          description: Batch updated successfully
+        '404':
+          description: Batch not found
+
+  /api/v1/trainingpersonnels:
+    get:
+      summary: Retrieve all training personnels
+      tags:
+        - Training Personnels
+      responses:
+        '200':
+          description: List of training personnels
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    signature:
+                      type: string
+
+    post:
+      summary: Create a new training personnel
+      tags:
+        - Training Personnels
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                trainingpersonnel:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    signature:
+                      type: string
+                  required:
+                    - name
+                    - signature
+      responses:
+        '201':
+          description: Training personnel created
+        '422':
+          description: Unable to create training personnel
+
+  /api/v1/trainingpersonnels/{id}:
+    get:
+      summary: Retrieve a specific training personnel
+      tags:
+        - Training Personnels
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Training personnel found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  signature:
+                    type: string
+        '404':
+          description: Training personnel not found
+
+    delete:
+      summary: Delete a training personnel
+      tags:
+        - Training Personnels
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Training personnel deleted successfully
+        '404':
+          description: Failed to delete the training personnel
+
+    patch:
+      summary: Update a training personnel
+      tags:
+        - Training Personnels
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                trainingpersonnel:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    signature:
+                      type: string
+              required:
+                - name
+                - signature
+      responses:
+        '200':
+          description: Training personnel updated successfully
+        '404':
+          description: Training personnel not found
+
+  /api/v1/students:
+    get:
+      summary: Retrieve all students
+      tags:
+        - Students
+      responses:
+        '200':
+          description: List of students
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    unique_number:
+                      type: string
+                    batch_id:
+                      type: integer
+
+    post:
+      summary: Create a new student
+      tags:
+        - Students
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                student:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    unique_number:
+                      type: string
+                    batch_id:
+                      type: integer
+                  required:
+                    - name
+                    - unique_number
+                    - batch_id
+      responses:
+        '201':
+          description: Student created
+        '422':
+          description: Unable to create student
+
+  /api/v1/students/{id}:
+    get:
+      summary: Retrieve a specific student
+      tags:
+        - Students
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Student found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  unique_number:
+                    type: string
+                  batch_id:
+                    type: integer
+        '404':
+          description: Student not found
+
+    delete:
+      summary: Delete a student
+      tags:
+        - Students
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Student deleted successfully
+        '404':
+          description: Failed to delete the student
+
+    patch:
+      summary: Update a student
+      tags:
+        - Students
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                student:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    unique_number:
+                      type: string
+                    batch_id:
+                      type: integer
+              required:
+                - name
+                - unique_number
+                - batch_id
+      responses:
+        '200':
+          description: Student updated successfully
+        '404':
+          description: Student not found
+
+  /api/v1/certificates:
+    get:
+      summary: Retrieve all certificates
+      tags:
+        - Certificates
+      responses:
+        '200':
+          description: List of certificates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    title:
+                      type: string
+                    course:
+                      type: string
+                    purpose:
+                      type: string
+                    student_id:
+                      type: integer
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+                    training_director_id:
+                      type: integer
+                    training_instructor_id:
+                      type: integer
+                    external_facilitator_id:
+                      type: integer
+
+    post:
+      summary: Create a new certificate
+      tags:
+        - Certificates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                certificate:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    title:
+                      type: string
+                    course:
+                      type: string
+                    purpose:
+                      type: string
+                    student_id:
+                      type: integer
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+                    training_director_id:
+                      type: integer
+                    training_instructor_id:
+                      type: integer
+                    external_facilitator_id:
+                      type: integer
+                  required:
+                    - name
+                    - title
+                    - course
+                    - purpose
+                    - student_id
+                    - start_date
+                    - end_date
+                    - training_director_id
+                    - training_instructor_id
+                    - external_facilitator_id
+      responses:
+        '201':
+          description: Certificate created
+        '422':
+          description: Unable to create certificate
+
+  /api/v1/certificates/{id}:
+    get:
+      summary: Retrieve a specific certificate
+      tags:
+        - Certificates
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Certificate found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  title:
+                    type: string
+                  course:
+                    type: string
+                  purpose:
+                    type: string
+                  student_id:
+                    type: integer
+                  start_date:
+                    type: string
+                    format: date
+                  end_date:
+                    type: string
+                    format: date
+                  training_director_id:
+                    type: integer
+                  training_instructor_id:
+                    type: integer
+                  external_facilitator_id:
+                    type: integer
+        '404':
+          description: Certificate not found
+
+    delete:
+      summary: Delete a certificate
+      tags:
+        - Certificates
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Certificate deleted successfully
+        '404':
+          description: Failed to delete the certificate
+    /api/v1/certificates/{id}:
+    get:
+      summary: Retrieve a specific certificate
+      tags:
+        - Certificates
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Certificate found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  title:
+                    type: string
+                  course:
+                    type: string
+                  purpose:
+                    type: string
+                  student_id:
+                    type: integer
+                  start_date:
+                    type: string
+                    format: date
+                  end_date:
+                    type: string
+                    format: date
+                  training_director_id:
+                    type: integer
+                  training_instructor_id:
+                    type: integer
+                  external_facilitator_id:
+                    type: integer
+        '404':
+          description: Certificate not found
+
+    delete:
+      summary: Delete a certificate
+      tags:
+        - Certificates
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Certificate deleted successfully
+        '404':
+          description: Failed to delete the certificate
+
+    patch:
+      summary: Update a certificate
+      tags:
+        - Certificates
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                certificate:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    title:
+                      type: string
+                    course:
+                      type: string
+                    purpose:
+                      type: string
+                    student_id:
+                      type: integer
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+                    training_director_id:
+                      type: integer
+                    training_instructor_id:
+                      type: integer
+                    external_facilitator_id:
+                      type: integer
+              required:
+                - name
+                - title
+                - course
+                - purpose
+                - student_id
+                - start_date
+                - end_date
+                - training_director_id
+                - training_instructor_id
+                - external_facilitator_id
+      responses:
+        '200':
+          description: Certificate updated successfully
+        '404':
+          description: Certificate not found
+
